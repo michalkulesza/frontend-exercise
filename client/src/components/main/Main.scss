@@ -7,27 +7,27 @@
 	.header {
 		border-bottom: 1px solid $grey;
 
-		&__container {
+		.container {
 			width: 100%;
 			max-width: $max-width;
 			padding: 5em 10em;
 			text-align: center;
-		}
 
-		&__title {
-			font-size: 2em;
-			margin-bottom: 0.5em;
-		}
+			.title {
+				font-size: 2em;
+				margin-bottom: 0.5em;
+			}
 
-		&__description {
-			font-size: 0.9em;
+			.description {
+				font-size: 0.9em;
+			}
 		}
 	}
 
 	.recipes {
 		padding-bottom: 2em;
 
-		&__container {
+		.container {
 			width: 100%;
 			max-width: 1176px;
 			padding: 5em 0;

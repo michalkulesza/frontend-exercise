@@ -9,7 +9,7 @@
 	position: relative;
 	overflow: hidden;
 
-	&__background {
+	.background {
 		height: 100%;
 		width: 100%;
 
@@ -20,7 +20,7 @@
 		}
 	}
 
-	&__overlay {
+	.overlay {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -32,41 +32,41 @@
 		justify-content: space-between;
 		color: $white;
 		padding: 1em;
-	}
 
-	&__favourite {
-		width: 100%;
-		height: 2em;
-		cursor: pointer;
-		@extend %flexY;
-		justify-content: flex-end;
-
-		&-text {
+		.favourite {
+			width: 100%;
+			height: 2em;
+			cursor: pointer;
 			@extend %flexY;
-			@extend %border-radius;
-			@extend %transition;
-			@extend %shadow;
-			font-size: 0.9em;
-			padding: 0.8em;
-			background-color: $black;
-			height: 100%;
+			justify-content: flex-end;
 
-			&:hover {
-				transform: scale(1.05);
+			&-text {
+				@extend %flexY;
+				@extend %border-radius;
+				@extend %transition;
+				@extend %shadow;
+				font-size: 0.9em;
+				padding: 0.8em;
+				background-color: $black;
+				height: 100%;
+
+				&:hover {
+					transform: scale(1.05);
+				}
 			}
 		}
-	}
 
-	&__title {
-		font-size: 1.3em;
-	}
+		.title {
+			font-size: 1.3em;
+		}
 
-	&__subtitle {
-		font-size: 0.9em;
-		color: $grey;
-	}
+		.subtitle {
+			font-size: 0.9em;
+			color: $grey;
+		}
 
-	&__info {
-		margin-bottom: 0.5em;
+		.info {
+			margin-bottom: 0.5em;
+		}
 	}
 }

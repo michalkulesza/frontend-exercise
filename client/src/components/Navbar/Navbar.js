@@ -6,11 +6,11 @@ import { ReactComponent as Reactlogo } from "../../assets/HelloFresh_Logo_Horizo
 const Navbar = () => {
 	return (
 		<div className="navbar">
-			<div className="navbar__left">
-				<div className="navbar__left-logo">
+			<div className="left">
+				<div className="logo">
 					<Reactlogo />
 				</div>
-				<nav className="navbar__left-menu">
+				<nav className="menu">
 					<ul>
 						<li>
 							<a href="/">Home</a>
@@ -21,7 +21,7 @@ const Navbar = () => {
 					</ul>
 				</nav>
 			</div>
-			<div className="navbar__right">
+			<div className="right">
 				<button className="navbar__right-button">Log in</button>
 			</div>
 		</div>

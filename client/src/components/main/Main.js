@@ -13,18 +13,16 @@ const Main = () => {
 	return (
 		<div className="main">
 			<section className="header">
-				<div className="header__container">
-					<div className="header__title">
-						Recipes for All Tastes and Occasions
-					</div>
-					<div className="header__description">
+				<div className="container">
+					<div className="title">Recipes for All Tastes and Occasions</div>
+					<div className="description">
 						Choose from over 2,500 lunch or dinner recipes paired with easy,
 						step-by-step instructions specially created by our chefs.
 					</div>
 				</div>
 			</section>
 			<section className="recipes">
-				<div className="recipes__container">
+				<div className="container">
 					{data.map(recipe => (
 						<Recipe
 							key={uuid()}

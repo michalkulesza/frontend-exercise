@@ -17,19 +17,18 @@ const Recipe = ({
 }) => {
 	return (
 		<div className="recipe">
-			<div className="recipe__background">
+			<div className="background">
 				<img src={image} alt="Dish" />
 			</div>
-
-			<div className="recipe__overlay">
-				<div className="recipe__favourite">
-					<div className="recipe__favourite-text">Add to favourites</div>
+			<div className="overlay">
+				<div className="favourite">
+					<div className="favourite-text">Add to favourites</div>
 				</div>
 				<div>
-					<div className="recipe__title">{name}</div>
-					<div className="recipe__subtitle">{subtitle}</div>
-					<div className="recipe__info"></div>
-					<div className="recipe__rating">
+					<div className="title">{name}</div>
+					<div className="subtitle">{subtitle}</div>
+					<div className="info"></div>
+					<div className="rating">
 						<Rating rating={rating} />
 					</div>
 				</div>
