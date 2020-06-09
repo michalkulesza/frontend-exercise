@@ -27,9 +27,14 @@ const Recipes = ({ title, description, featured, recipesData }) => {
 									<FeaturedItem
 										key={uuid()}
 										image={photos[getRandomNumber(8)]}
+										rating={recipe.rating}
+										name={recipe.name}
+										difficulty={recipe.difficulty}
+										time={recipe.time}
+										favourite={false}
 									/>
 							  ))
-							: "nic"}
+							: ""}
 					</div>
 				</div>
 			</div>
