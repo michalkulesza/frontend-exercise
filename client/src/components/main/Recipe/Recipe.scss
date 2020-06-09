@@ -36,19 +36,23 @@
 
 	&__favourite {
 		width: 100%;
-		text-align: right;
-		font-size: 1.5em;
+		height: 2em;
 		cursor: pointer;
+		@extend %flexY;
+		justify-content: flex-end;
 
-		svg {
-			opacity: 0.8;
+		&-text {
+			@extend %flexY;
+			@extend %border-radius;
 			@extend %transition;
-		}
+			@extend %shadow;
+			font-size: 0.9em;
+			padding: 0.8em;
+			background-color: $black;
+			height: 100%;
 
-		&:hover {
-			svg {
-				opacity: 1;
-				transform: scale(1.2);
+			&:hover {
+				transform: scale(1.05);
 			}
 		}
 	}
@@ -57,17 +61,12 @@
 		font-size: 1.3em;
 	}
 
-	&__info {
-		margin-bottom: 0.5em;
+	&__subtitle {
+		font-size: 0.9em;
+		color: $grey;
 	}
 
-	&__rating {
-		font-size: 1.2em;
-		@extend %flexY;
-
-		span {
-			font-size: 0.7em;
-			margin-left: 0.5em;
-		}
+	&__info {
+		margin-bottom: 0.5em;
 	}
 }

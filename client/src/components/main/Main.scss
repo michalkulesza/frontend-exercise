@@ -6,6 +6,7 @@
 
 	.header {
 		border-bottom: 1px solid $grey;
+
 		&__container {
 			width: 100%;
 			max-width: $max-width;
@@ -27,10 +28,12 @@
 		padding-bottom: 2em;
 
 		&__container {
-			@extend %container;
+			width: 100%;
+			max-width: 1176px;
+			padding: 5em 0;
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			grid-gap: 0.5em;
+			grid-gap: 1em;
 		}
 	}
 }
@@ -39,6 +42,8 @@
 	.main {
 		.recipes {
 			&__container {
+				padding: 5em 1em;
+				grid-gap: 2em;
 				grid-template-columns: 1fr;
 			}
 		}

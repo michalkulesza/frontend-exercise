@@ -1,0 +1,34 @@
+@import "../../../utils.scss";
+
+.rating {
+	height: 20px;
+	position: relative;
+	width: 100px;
+
+	span {
+		margin-left: 85px;
+		height: 100%;
+	}
+
+	.rating-dynamic {
+		height: 100%;
+		font-size: 16px;
+		top: 0;
+		position: absolute;
+		@extend %flexY;
+		margin-top: 1px;
+	}
+
+	.rating-static {
+		margin-top: 2px;
+		font-size: 16px;
+		height: 100%;
+		top: 0;
+		position: absolute;
+		@extend %flexY;
+
+		.rating-star {
+			height: 100%;
+		}
+	}
+}

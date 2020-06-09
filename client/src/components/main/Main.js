@@ -29,8 +29,9 @@ const Main = () => {
 						<Recipe
 							key={uuid()}
 							image={photos[getRandomNumber(8)]}
-							rating={recipe.rating}
 							name={recipe.name}
+							subtitle={recipe.headline}
+							rating={recipe.rating}
 							difficulty={recipe.difficulty}
 							time={recipe.time}
 							favourite={false}

@@ -3,10 +3,18 @@ import "./Recipe.scss";
 
 import Rating from "../Rating/Rating";
 
-import { FaHeart } from "react-icons/fa";
-import { FiHeart } from "react-icons/fi";
+// import { FaHeart } from "react-icons/fa";
+// import { FiHeart } from "react-icons/fi";
 
-const Recipe = ({ image, rating, name, difficulty, time, favourite }) => {
+const Recipe = ({
+	image,
+	rating,
+	name,
+	subtitle,
+	difficulty,
+	time,
+	favourite,
+}) => {
 	return (
 		<div className="recipe">
 			<div className="recipe__background">
@@ -15,10 +23,11 @@ const Recipe = ({ image, rating, name, difficulty, time, favourite }) => {
 
 			<div className="recipe__overlay">
 				<div className="recipe__favourite">
-					{favourite ? <FaHeart /> : <FiHeart />}
+					<div className="recipe__favourite-text">Add to favourites</div>
 				</div>
 				<div>
 					<div className="recipe__title">{name}</div>
+					<div className="recipe__subtitle">{subtitle}</div>
 					<div className="recipe__info"></div>
 					<div className="recipe__rating">
 						<Rating rating={rating} />
