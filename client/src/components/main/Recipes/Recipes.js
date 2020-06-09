@@ -1,8 +1,11 @@
 import React from "react";
 import "./Recipes.scss";
 import uuid from "react-uuid";
+import photos from "../../../photos.json";
 
 import FeaturedItem from "./FeaturedItem/FeaturedItem";
+
+import getRandomNumber from "../../../functions/misc";
 
 const Recipes = ({ title, description, featured, recipesData }) => {
 	return (
@@ -20,7 +23,12 @@ const Recipes = ({ title, description, featured, recipesData }) => {
 				<div className="recipes__container">
 					<div className="recipes__items">
 						{featured
-							? recipesData.map(recipe => <FeaturedItem key={uuid()} />)
+							? recipesData.map(recipe => (
+									<FeaturedItem
+										key={uuid()}
+										image={photos[getRandomNumber(8)]}
+									/>
+							  ))
 							: "nic"}
 					</div>
 				</div>

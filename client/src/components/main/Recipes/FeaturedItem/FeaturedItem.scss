@@ -1,10 +1,31 @@
 @import "../../../../utils.scss";
 
-.featured-wrapper {
+.featured {
 	height: 395px;
 	min-width: 265px;
 	background-color: pink;
 	margin-left: 2em;
 	@extend %border-radius;
 	@extend %shadow;
+	position: relative;
+
+	&__background {
+		height: 100%;
+		width: 100%;
+
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.9) 70%);
+	}
 }
