@@ -1,0 +1,73 @@
+@import "../../utils.scss";
+
+.navbar {
+	height: 60px;
+	width: 100%;
+	background-color: $white;
+	@extend %shadow;
+	@extend %flexY;
+	justify-content: space-between;
+
+	&__left {
+		display: flex;
+		height: 100%;
+
+		&-logo {
+			@extend %flexY;
+			margin-right: 15px;
+			padding: 10px;
+
+			svg {
+				height: 30px;
+				width: auto;
+			}
+		}
+
+		&-menu {
+			@extend %flexY;
+
+			ul {
+				display: flex;
+				height: 100%;
+				cursor: pointer;
+
+				li {
+					padding: 0 10px;
+					@extend %flexY;
+
+					a {
+						color: $dark-grey;
+						text-align: center;
+						text-decoration: none;
+					}
+
+					&:hover {
+						background-color: $light-green;
+						a {
+							color: $dark-green;
+							font-weight: bold;
+							margin-left: -1px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__right {
+		&-button {
+			padding: 0.3em 1.4em;
+			@extend %border-radius;
+			border: 1px solid $dark-green;
+			font-size: 1em;
+			color: $dark-green;
+			margin-right: 10px;
+			background-color: transparent;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $light-green;
+			}
+		}
+	}
+}
