@@ -1,8 +1,13 @@
 import React from "react";
 import "./Main.scss";
-import { mostFavourited } from "../../functions/getData";
+import uuid from "react-uuid";
 
-import Recipes from "./Recipes/Recipes";
+import Recipe from "./Recipe/Recipe";
+
+import photos from "../../photos.json";
+import data from "../../recipes.json";
+
+import getRandomNumber from "../../functions/misc";
 
 const Main = () => {
 	return (
@@ -18,12 +23,21 @@ const Main = () => {
 					</div>
 				</div>
 			</section>
-			<Recipes
-				title="Most Popular Meals and Recipes"
-				description="Check out our most favorited recipes!"
-				featured={true}
-				recipesData={mostFavourited()}
-			/>
+			<section className="recipes">
+				<div className="recipes__container">
+					{data.map(recipe => (
+						<Recipe
+							key={uuid()}
+							image={photos[getRandomNumber(8)]}
+							rating={recipe.rating}
+							name={recipe.name}
+							difficulty={recipe.difficulty}
+							time={recipe.time}
+							favourite={false}
+						/>
+					))}
+				</div>
+			</section>
 		</div>
 	);
 };
