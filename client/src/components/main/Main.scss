@@ -3,11 +3,11 @@
 .main {
 	height: 100%;
 	width: 100%;
-	@extend %flexX;
-	border-bottom: 1px solid $grey;
 
 	.header {
+		border-bottom: 1px solid $grey;
 		&__container {
+			width: 100%;
 			max-width: $max-width;
 			padding: 5em 10em;
 			text-align: center;
@@ -20,6 +20,55 @@
 
 		&__description {
 			font-size: 0.9em;
+		}
+	}
+
+	.recipes {
+		padding-bottom: 2em;
+
+		&__wrapper {
+			width: 100%;
+			max-width: $max-width;
+			color: $dark-grey;
+		}
+
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			padding: 3em 2em 1em;
+
+			&-title {
+				font-size: 1.35em;
+				margin-bottom: 0.15em;
+			}
+
+			&-description {
+				font-size: 0.9em;
+				color: $grey;
+			}
+
+			&-right {
+				display: flex;
+				align-items: flex-end;
+			}
+		}
+
+		&__container {
+			width: 100%;
+			overflow-x: hidden;
+		}
+
+		&__items {
+			padding: 10px 0;
+			overflow-x: scroll;
+			display: flex;
+			flex-direction: row;
+			scroll-behavior: smooth;
+			&::-webkit-scrollbar {
+				width: 0px;
+				height: 0px;
+				background: transparent;
+			}
 		}
 	}
 }

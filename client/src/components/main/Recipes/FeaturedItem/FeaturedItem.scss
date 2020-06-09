@@ -1,0 +1,10 @@
+@import "../../../../utils.scss";
+
+.featured-wrapper {
+	height: 395px;
+	min-width: 265px;
+	background-color: pink;
+	margin-left: 2em;
+	@extend %border-radius;
+	@extend %shadow;
+}

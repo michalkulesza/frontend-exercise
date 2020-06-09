@@ -1,5 +1,8 @@
 import React from "react";
 import "./Main.scss";
+import { mostFavourited } from "../../functions/getData";
+
+import Recipes from "./Recipes/Recipes";
 
 const Main = () => {
 	return (
@@ -15,6 +18,12 @@ const Main = () => {
 					</div>
 				</div>
 			</section>
+			<Recipes
+				title="Most Popular Meals and Recipes"
+				description="Check out our most favorited recipes!"
+				featured={true}
+				recipesData={mostFavourited()}
+			/>
 		</div>
 	);
 };
