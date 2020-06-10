@@ -4,11 +4,18 @@ import "./Register.scss";
 
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const Register = () => {
+const Register = ({ history }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [password2, setPassword2] = useState("");
 	const [error, setError] = useState(null);
+
+	const displayError = error => {
+		setError(error);
+		setTimeout(() => {
+			setError(null);
+		}, 2000);
+	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -24,6 +31,22 @@ const Register = () => {
 			setError("Passwords do not match");
 			return;
 		}
+
+		fetch("https://localhost:3001/api/register", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		})
+			.then(res => {
+				res.ok ? history.push("/login") : displayError("User already exists");
+			})
+			.catch(err => {
+				console.error(err);
+				displayError("There has been a problem");
+			});
 	};
 
 	return (
