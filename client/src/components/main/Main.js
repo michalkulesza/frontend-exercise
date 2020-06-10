@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Main.scss";
 import uuid from "react-uuid";
 
 import Recipe from "./Recipe/Recipe";
-import data from "../../recipes.json";
+
+import { RiLoader4Line } from "react-icons/ri";
 
 const Main = () => {
+	const [data, setData] = useState();
+
+	useEffect(() => {
+		fetch("http://localhost:3001/api/getdata")
+			.then(res => res.json())
+			.then(data => {
+				setData(data);
+			})
+			.catch(err => console.error(err));
+	}, []);
+
 	return (
 		<div className="main">
 			<section className="header">
@@ -19,23 +31,38 @@ const Main = () => {
 			</section>
 			<section className="recipes">
 				<div className="container">
-					{data.map(recipe => (
-						<Recipe
-							key={uuid()}
-							image={recipe.image}
-							name={recipe.name}
-							subtitle={recipe.headline}
-							rating={recipe.rating}
-							difficulty={recipe.difficulty}
-							time={recipe.time}
-							favourite={false}
-							ingridients={recipe.ingredients}
-							calories={recipe.calories}
-							fats={recipe.fats}
-							carbs={recipe.carbos}
-							proteins={recipe.proteins}
-						/>
-					))}
+					{data ? (
+						data.map(recipe => (
+							<Recipe
+								key={uuid()}
+								image={recipe.image}
+								name={recipe.name}
+								subtitle={recipe.headline}
+								rating={recipe.rating}
+								difficulty={recipe.difficulty}
+								time={recipe.time}
+								favourite={false}
+								ingridients={recipe.ingredients}
+								calories={recipe.calories}
+								fats={recipe.fats}
+								carbs={recipe.carbos}
+								proteins={recipe.proteins}
+							/>
+						))
+					) : (
+						<>
+							<div className="loading">
+								<span>
+									<RiLoader4Line />
+								</span>
+							</div>
+							<div className="loading">
+								<span>
+									<RiLoader4Line />
+								</span>
+							</div>
+						</>
+					)}
 				</div>
 			</section>
 		</div>
