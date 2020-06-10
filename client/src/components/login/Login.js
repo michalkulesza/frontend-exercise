@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./Login.scss";
 
 import displayError from "../../functions";
 
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const Login = ({ history }) => {
+const Login = ({ history, setToken }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
@@ -32,10 +33,14 @@ const Login = ({ history }) => {
 		})
 			.then(res => {
 				if (res.ok) {
-					history.push("/");
+					return res.json();
 				} else {
 					displayError("Please check your login details", setError);
 				}
+			})
+			.then(res => {
+				setToken(res.token);
+				history.push("/");
 			})
 			.catch(err => {
 				console.error(err);

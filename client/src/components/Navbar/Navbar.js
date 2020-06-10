@@ -1,10 +1,11 @@
 import React from "react";
 import "./Navbar.scss";
 import { useLocation, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { ReactComponent as Reactlogo } from "../../assets/HelloFresh_Logo_Horizontal_V2.svg";
 
-const Navbar = () => {
+const Navbar = ({ token }) => {
 	const location = useLocation();
 	let currentLocation = location.pathname;
 
@@ -26,9 +27,14 @@ const Navbar = () => {
 				</nav>
 			</div>
 			<div className="right">
-				{currentLocation === "/login" ? (
+				{console.log(token)}
+				{currentLocation === "/login" && !token ? (
 					<Link to="/register">
 						<button className="navbar__right-button">Register</button>
+					</Link>
+				) : token ? (
+					<Link to="/logout">
+						<button className="navbar__right-button">Log out</button>
 					</Link>
 				) : (
 					<Link to="/login">
