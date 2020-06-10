@@ -1,7 +1,7 @@
 import React from "react";
 import "./Recipe.scss";
 
-import Rating from "../Rating/Rating";
+import Rating from "./Rating/Rating";
 
 // import { FaHeart } from "react-icons/fa";
 // import { FiHeart } from "react-icons/fi";
