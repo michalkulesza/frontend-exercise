@@ -112,6 +112,9 @@ const Rating = ({ rating }) => {
 				</div>
 			</div>
 			<span>{rating ? rating : 0}</span>
+			<div className="user-rated">
+				<span>{userRating ? `(Rated ${userRating})` : "(Not rated yet)"}</span>
+			</div>
 		</div>
 	);
 };

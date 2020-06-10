@@ -3,11 +3,7 @@
 .rating {
 	height: 20px;
 	position: relative;
-
-	span {
-		margin-left: 85px;
-		height: 100%;
-	}
+	display: flex;
 
 	.rating-dynamic {
 		height: 100%;
@@ -29,5 +25,18 @@
 		.rating-star {
 			height: 100%;
 		}
+	}
+
+	> span {
+		margin: 0 5px 0 85px;
+		height: 100%;
+	}
+
+	.user-rated {
+		font-size: 0.8em;
+		height: 100%;
+		@extend %flexY;
+		margin-top: 1px;
+		color: $grey;
 	}
 }

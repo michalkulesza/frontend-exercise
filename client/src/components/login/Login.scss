@@ -1,0 +1,54 @@
+@import "../../utils.scss";
+
+.login {
+	height: calc(100vh - 70px);
+	width: 100%;
+
+	.container {
+		height: 300px;
+		width: 400px;
+		margin-top: 2em;
+		@extend %border-radius;
+		border: 1px solid $light-grey;
+		@extend %flexY;
+		flex-direction: column;
+		padding: 2em;
+
+		.title {
+			font-size: 1.3em;
+			margin-bottom: 1em;
+		}
+
+		form {
+			margin-bottom: 1em;
+
+			input {
+				width: 100%;
+				padding: 0.8em 1em;
+				@extend %border-radius;
+				border: 1px solid $grey;
+				margin-bottom: 1em;
+
+				&:last-of-type {
+					margin-bottom: 0;
+				}
+			}
+		}
+		button {
+			width: 100%;
+			padding: 1em 2em;
+			background-color: $dark-green;
+			border: none;
+			@extend %border-radius;
+			@extend %shadow;
+			color: $white;
+			font-weight: bold;
+			cursor: pointer;
+
+			&:hover {
+				box-shadow: none;
+				background-color: darken($color: $dark-green, $amount: 5);
+			}
+		}
+	}
+}
