@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.scss";
 
+import displayError from "../../functions";
+
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const Login = () => {
+const Login = ({ history }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
@@ -12,13 +14,33 @@ const Login = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (!RegEx.test(email)) {
-			setError("Incorrect e-mail");
+			displayError("Incorrect e-mail", setError);
 			return;
 		}
 		if (password.length < 6) {
-			setError("Password too short");
+			displayError("Password too short", setError);
 			return;
 		}
+
+		fetch("http://localhost:3001/api/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: email,
+				password: password,
+			}),
+		})
+			.then(res => {
+				if (res.ok) {
+					history.push("/");
+				} else {
+					displayError("Please check your login details", setError);
+				}
+			})
+			.catch(err => {
+				console.error(err);
+				displayError("There has been a problem", setError);
+			});
 	};
 
 	return (
@@ -32,7 +54,6 @@ const Login = () => {
 						placeholder="E-mail"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
-						onFocus={() => setError(null)}
 					/>
 					<input
 						className="input-password"
@@ -40,7 +61,6 @@ const Login = () => {
 						placeholder="Password"
 						value={password}
 						onChange={e => setPassword(e.target.value)}
-						onFocus={() => setError(null)}
 					/>
 					<div className="form-error">{error}</div>
 					<button>LOG IN</button>

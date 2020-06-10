@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Register.scss";
 
+import displayError from "../../functions";
+
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const Register = ({ history }) => {
@@ -10,25 +12,18 @@ const Register = ({ history }) => {
 	const [password2, setPassword2] = useState("");
 	const [error, setError] = useState(null);
 
-	const displayError = error => {
-		setError(error);
-		setTimeout(() => {
-			setError(null);
-		}, 2000);
-	};
-
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (!RegEx.test(email)) {
-			setError("Incorrect e-mail");
+			displayError("Incorrect e-mail", setError);
 			return;
 		}
 		if (password.length < 6) {
-			setError("Password too short");
+			displayError("Password too short", setError);
 			return;
 		}
 		if (password !== password2) {
-			setError("Passwords do not match");
+			displayError("Passwords do not match", setError);
 			return;
 		}
 
@@ -44,12 +39,12 @@ const Register = ({ history }) => {
 				if (res.ok) {
 					history.push("/login");
 				} else {
-					displayError("User already exists");
+					displayError("User already exists", setError);
 				}
 			})
 			.catch(err => {
 				console.error(err);
-				displayError("There has been a problem");
+				displayError("There has been a problem", setError);
 			});
 	};
 
@@ -66,7 +61,6 @@ const Register = ({ history }) => {
 						onChange={e => {
 							setEmail(e.target.value);
 						}}
-						onFocus={() => setError(null)}
 					/>
 					<input
 						className="input-password"
@@ -74,7 +68,6 @@ const Register = ({ history }) => {
 						placeholder="Password"
 						value={password}
 						onChange={e => setPassword(e.target.value)}
-						onFocus={() => setError(null)}
 					/>
 					<input
 						className="input-password"
@@ -82,7 +75,6 @@ const Register = ({ history }) => {
 						placeholder="Retype password"
 						value={password2}
 						onChange={e => setPassword2(e.target.value)}
-						onFocus={() => setError(null)}
 					/>
 					<div className="form-error">{error}</div>
 					<button>REGISTER</button>

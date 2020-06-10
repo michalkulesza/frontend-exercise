@@ -13,4 +13,19 @@ router.post("/api/register", async (req, res) => {
 	}
 });
 
+router.post("/api/login", async (req, res) => {
+	try {
+		const { email, password } = req.body;
+		const user = await User.findByCredentials(email, password);
+		if (!user) {
+			throw new Error("Login failed! Check credentials");
+		}
+		const token = await user.generateAuthToken();
+		res.send({ token, user_id });
+	} catch (error) {
+		console.log(error);
+		res.status(400).send(error);
+	}
+});
+
 module.exports = router;
