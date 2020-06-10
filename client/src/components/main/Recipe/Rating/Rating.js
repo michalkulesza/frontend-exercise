@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "./Rating.scss";
 import uuid from "react-uuid";
 
@@ -6,9 +7,9 @@ import { MdStar } from "react-icons/md";
 import { MdStarHalf } from "react-icons/md";
 import { MdStarBorder } from "react-icons/md";
 
-const Rating = ({ rating }) => {
+const Rating = ({ rating, ratedByUser }) => {
 	const [stars, setStars] = useState([]);
-	const [userRating, setUserRating] = useState(null);
+	const [userRating, setUserRating] = useState(ratedByUser);
 	const [tempUserRating, setTempUserRating] = useState(null);
 
 	const handleHoverOnStar = e => {
@@ -117,6 +118,16 @@ const Rating = ({ rating }) => {
 			</div>
 		</div>
 	);
+};
+
+Rating.propTypes = {
+	rating: PropTypes.number,
+	ratedByuser: PropTypes.number,
+};
+
+Rating.defaultProps = {
+	rating: null,
+	ratedByuser: null,
 };
 
 export default Rating;

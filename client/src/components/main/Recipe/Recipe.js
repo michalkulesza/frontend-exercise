@@ -43,8 +43,8 @@ const Recipe = ({
 							<div className="nutritions-name">Protein</div>
 						</div>
 					</div>
-					<Info difficulty={3} time="PT45M" />
-					<Rating rating={0} />
+					<Info difficulty={3} time="PT90M" />
+					<Rating rating={rating} />
 				</div>
 			</div>
 		</div>
