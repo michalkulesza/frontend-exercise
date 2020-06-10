@@ -2,9 +2,7 @@ import React from "react";
 import "./Recipe.scss";
 
 import Rating from "./Rating/Rating";
-
-// import { FaHeart } from "react-icons/fa";
-// import { FiHeart } from "react-icons/fi";
+import Info from "./Info/Info";
 
 const Recipe = ({
 	image,
@@ -27,27 +25,26 @@ const Recipe = ({
 				<div>
 					<div className="title">{name}</div>
 					<div className="subtitle">{subtitle}</div>
-					<div className="info">
-						<div className="info-container">
-							<div className="info-value">900kcal</div>
-							<div className="info-name">Calories</div>
+					<div className="nutritions">
+						<div className="nutritions-container">
+							<div className="nutritions-value">900kcal</div>
+							<div className="nutritions-name">Calories</div>
 						</div>
-						<div className="info-container">
-							<div className="info-value">3g</div>
-							<div className="info-name">Fat</div>
+						<div className="nutritions-container">
+							<div className="nutritions-value">3g</div>
+							<div className="nutritions-name">Fat</div>
 						</div>
-						<div className="info-container">
-							<div className="info-value">5g</div>
-							<div className="info-name">Carbs</div>
+						<div className="nutritions-container">
+							<div className="nutritions-value">5g</div>
+							<div className="nutritions-name">Carbs</div>
 						</div>
-						<div className="info-container">
-							<div className="info-value">10g</div>
-							<div className="info-name">Protein</div>
+						<div className="nutritions-container">
+							<div className="nutritions-value">10g</div>
+							<div className="nutritions-name">Protein</div>
 						</div>
 					</div>
-					<div className="rating">
-						<Rating rating={rating} />
-					</div>
+					<Info difficulty={3} time="PT45M" />
+					<Rating rating={0} />
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,44 @@
+@import "../../../../utils.scss";
+
+.info {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+
+	&-container {
+		@extend %flexY;
+		&:nth-of-type(1) {
+			margin-right: 15px;
+		}
+
+		.info-icon {
+			font-size: 22px;
+			margin-right: 5px;
+
+			svg {
+				margin-top: 5px;
+			}
+
+			&-time {
+				font-size: 18px;
+				margin: 5px 5px 0 0;
+			}
+		}
+
+		.info-value {
+			font-size: 11px;
+			background-color: $dark-grey;
+			padding: 3px 15px;
+			@extend %border-radius;
+			@extend %transition;
+			cursor: default;
+
+			&:hover {
+				background-color: lighten($color: $dark-grey, $amount: 8);
+			}
+		}
+	}
+
+	&-time {
+	}
+}
