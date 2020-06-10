@@ -30,6 +30,10 @@ const Main = () => {
 							time={recipe.time}
 							favourite={false}
 							ingridients={recipe.ingredients}
+							calories={recipe.calories}
+							fats={recipe.fats}
+							carbs={recipe.carbos}
+							proteins={recipe.proteins}
 						/>
 					))}
 				</div>

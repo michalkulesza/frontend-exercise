@@ -1,7 +1,7 @@
 import React from "react";
 import "./MoreInfo.scss";
-
 import uuid from "react-uuid";
+import PropTypes from "prop-types";
 
 import { MdExpandMore } from "react-icons/md";
 

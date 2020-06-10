@@ -3,7 +3,7 @@
 .recipe {
 	height: 395px;
 	min-width: 265px;
-	background-color: pink;
+	background-color: $grey;
 	@extend %border-radius;
 	@extend %shadow;
 	position: relative;
