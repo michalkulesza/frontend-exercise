@@ -44,6 +44,10 @@ $max-width: 1176px;
 	transition: 0.1s all ease;
 }
 
+%slower-transition {
+	transition: 0.2s all ease-in-out;
+}
+
 //Layout
 section {
 	height: auto;

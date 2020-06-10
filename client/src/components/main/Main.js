@@ -33,6 +33,7 @@ const Main = () => {
 							difficulty={recipe.difficulty}
 							time={recipe.time}
 							favourite={false}
+							ingridients={recipe.ingredients}
 						/>
 					))}
 				</div>
