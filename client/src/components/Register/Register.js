@@ -32,16 +32,20 @@ const Register = ({ history }) => {
 			return;
 		}
 
-		fetch("https://localhost:3001/api/register", {
+		fetch("http://localhost:3001/api/register", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				email,
-				password,
+				email: email,
+				password: password,
 			}),
 		})
 			.then(res => {
-				res.ok ? history.push("/login") : displayError("User already exists");
+				if (res.ok) {
+					history.push("/login");
+				} else {
+					displayError("User already exists");
+				}
 			})
 			.catch(err => {
 				console.error(err);
