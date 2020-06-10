@@ -3,11 +3,7 @@ import "./Main.scss";
 import uuid from "react-uuid";
 
 import Recipe from "./Recipe/Recipe";
-
-import photos from "../../photos.json";
 import data from "../../recipes.json";
-
-import getRandomNumber from "../../functions/misc";
 
 const Main = () => {
 	return (
@@ -26,7 +22,7 @@ const Main = () => {
 					{data.map(recipe => (
 						<Recipe
 							key={uuid()}
-							image={photos[getRandomNumber(8)]}
+							image={recipe.image}
 							name={recipe.name}
 							subtitle={recipe.headline}
 							rating={recipe.rating}
