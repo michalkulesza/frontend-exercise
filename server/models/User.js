@@ -14,6 +14,14 @@ const userSchema = mongoose.Schema({
 		required: true,
 		minLength: 6,
 	},
+	tokens: [
+		{
+			token: {
+				type: String,
+				required: true,
+			},
+		},
+	],
 	recipes: [
 		{
 			_id: String,
