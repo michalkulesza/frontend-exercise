@@ -5,9 +5,11 @@ import uuid from "react-uuid";
 import Recipe from "./Recipe/Recipe";
 
 import { RiLoader4Line } from "react-icons/ri";
+import { MdError } from "react-icons/md";
 
 const Main = () => {
 	const [data, setData] = useState();
+	const [errorLoadingData, setErrorLoadingData] = useState(true);
 
 	useEffect(() => {
 		fetch("http://localhost:3001/api/getdata")
@@ -15,7 +17,10 @@ const Main = () => {
 			.then(data => {
 				setData(data);
 			})
-			.catch(err => console.error(err));
+			.catch(err => {
+				setErrorLoadingData(true);
+				console.error(err);
+			});
 	}, []);
 
 	return (
@@ -49,6 +54,21 @@ const Main = () => {
 								proteins={recipe.proteins}
 							/>
 						))
+					) : errorLoadingData ? (
+						<>
+							<div className="error-container">
+								<div className="error">
+									<MdError />
+									<span>Error loading data...</span>
+								</div>
+							</div>
+							<div className="error-container">
+								<div className="error">
+									<MdError />
+									<span>Error loading data...</span>
+								</div>
+							</div>
+						</>
 					) : (
 						<>
 							<div className="loading">

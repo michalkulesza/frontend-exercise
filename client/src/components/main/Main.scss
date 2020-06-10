@@ -45,6 +45,28 @@
 					animation: spin 0.5s linear infinite;
 				}
 			}
+
+			.error-container {
+				width: 100%;
+				height: 395px;
+				@extend %flexXY;
+				font-size: 2em;
+
+				.error {
+					@extend %flexY;
+					flex-direction: column;
+
+					svg {
+						margin-bottom: 0.5em;
+						fill: $grey;
+					}
+
+					span {
+						color: $dark-grey;
+						font-size: 0.5em;
+					}
+				}
+			}
 		}
 	}
 }
