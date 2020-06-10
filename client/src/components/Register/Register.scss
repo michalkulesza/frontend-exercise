@@ -20,8 +20,6 @@
 		}
 
 		form {
-			margin-bottom: 1em;
-
 			input {
 				width: 100%;
 				padding: 0.8em 1em;
@@ -30,8 +28,16 @@
 				margin-bottom: 1em;
 
 				&:last-of-type {
-					margin-bottom: 0;
+					margin-bottom: 0.5em;
 				}
+			}
+
+			.form-error {
+				width: 100%;
+				text-align: center;
+				color: red;
+				font-weight: bold;
+				font-size: 0.8em;
 			}
 		}
 		button {
@@ -44,6 +50,7 @@
 			color: $white;
 			font-weight: bold;
 			cursor: pointer;
+			margin-top: 0.5em;
 
 			&:hover {
 				box-shadow: none;
