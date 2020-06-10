@@ -62,11 +62,40 @@
 
 		.subtitle {
 			font-size: 0.9em;
+			margin-bottom: 0.5em;
 			color: $grey;
 		}
 
 		.info {
 			margin-bottom: 0.5em;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 0.5em;
+
+			&-container {
+				height: 50px;
+				width: 100%;
+				background-color: rgba($color: $white, $alpha: 0.05);
+				border: 1px solid rgba($color: #ffffff, $alpha: 0.3);
+				@extend %border-radius;
+				@extend %flexXY;
+				@extend %transition;
+				flex-direction: column;
+				cursor: default;
+
+				.info-value {
+					font-size: 0.9em;
+				}
+
+				.info-name {
+					font-size: 0.8em;
+					color: $light-grey;
+				}
+
+				&:hover {
+					background-color: rgba($color: $white, $alpha: 0.15);
+				}
+			}
 		}
 	}
 }
