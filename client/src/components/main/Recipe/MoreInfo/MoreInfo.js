@@ -35,4 +35,16 @@ const MoreInfo = ({ isMoreInfoVisible, handleShowMore, ingridients }) => {
 	);
 };
 
+MoreInfo.defaultProps = {
+	isMoreInfoVisible: false,
+	handleShowMore: () => {},
+	ingridients: [],
+};
+
+MoreInfo.propTypes = {
+	isMoreInfoVisible: PropTypes.bool,
+	handleShowMore: PropTypes.func,
+	ingridients: PropTypes.array,
+};
+
 export default MoreInfo;
