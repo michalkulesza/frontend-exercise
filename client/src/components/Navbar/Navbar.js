@@ -27,7 +27,6 @@ const Navbar = ({ token }) => {
 				</nav>
 			</div>
 			<div className="right">
-				{console.log(token)}
 				{currentLocation === "/login" && !token ? (
 					<Link to="/register">
 						<button className="navbar__right-button">Register</button>
@@ -44,6 +43,14 @@ const Navbar = ({ token }) => {
 			</div>
 		</div>
 	);
+};
+
+Navbar.propTypes = {
+	token: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+};
+
+Navbar.defaultProps = {
+	token: null,
 };
 
 export default Navbar;
