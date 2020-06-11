@@ -5,7 +5,7 @@
 	width: 100%;
 
 	.header {
-		border-bottom: 1px solid $grey;
+		border-bottom: 1px solid $light-grey;
 
 		.container {
 			width: 100%;
@@ -83,8 +83,30 @@
 
 @media (max-width: 800px) {
 	.main {
+		.header {
+			.container {
+				padding: 5em 5em;
+			}
+		}
 		.recipes {
 			.container {
+				grid-gap: 2em;
+				grid-template-columns: 1fr;
+			}
+		}
+	}
+}
+
+@media (max-width: 550px) {
+	.main {
+		.header {
+			.container {
+				padding: 3em 1em;
+			}
+		}
+		.recipes {
+			.container {
+				padding: 2em 1em;
 				grid-gap: 2em;
 				grid-template-columns: 1fr;
 			}
