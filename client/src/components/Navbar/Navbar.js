@@ -3,8 +3,6 @@ import "./Navbar.scss";
 import { useLocation, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { ReactComponent as Reactlogo } from "../../assets/HelloFresh_Logo_Horizontal_V2.svg";
-
 import { FiMenu } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
 
@@ -40,7 +38,10 @@ const Navbar = ({ token, setToken, setUserData }) => {
 		<div className="navbar">
 			<div className="left">
 				<div className="logo">
-					<Reactlogo />
+					<img
+						src="https://cdn.hellofresh.com/logo/HelloFresh_Logo_Horizontal_V2.svg"
+						alt=""
+					/>
 				</div>
 				<nav className="menu">
 					<ul>
