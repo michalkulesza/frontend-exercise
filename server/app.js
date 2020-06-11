@@ -5,7 +5,7 @@ require("./db/db");
 const app = express();
 
 const dataRouter = require("./router/data");
-const authRouter = require("./router/auth");
+const userRouter = require("./router/user");
 
 app.use(express.json());
 
@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use(dataRouter, authRouter);
+app.use(dataRouter, userRouter);
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

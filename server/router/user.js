@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const auth = require("../middleware/auth");
 
 router.post("/api/register", async (req, res) => {
 	try {
@@ -26,6 +27,16 @@ router.post("/api/login", async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(400).send(error);
+	}
+});
+
+router.post("/api/logout", auth, async (req, res) => {
+	try {
+		req.user.tokens.splice(0, req.user.tokens.length);
+		await req.user.save();
+		res.send();
+	} catch (error) {
+		res.status(500).send(error);
 	}
 });
 
