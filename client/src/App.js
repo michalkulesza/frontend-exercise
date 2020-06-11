@@ -13,7 +13,7 @@ const App = () => {
 	return (
 		<Router>
 			<div className="App">
-				<Navbar token={token} setToken={setToken} />
+				<Navbar token={token} setToken={setToken} setUserData={setUserData} />
 				<Switch>
 					<Route
 						path="/"

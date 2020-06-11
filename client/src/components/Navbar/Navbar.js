@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import { ReactComponent as Reactlogo } from "../../assets/HelloFresh_Logo_Horizontal_V2.svg";
 
-const Navbar = ({ token, setToken }) => {
+const Navbar = ({ token, setToken, setUserData }) => {
 	const location = useLocation();
 	let currentLocation = location.pathname;
 
@@ -20,6 +20,7 @@ const Navbar = ({ token, setToken }) => {
 			.then(res => {
 				if (res.ok) {
 					setToken(null);
+					setUserData([]);
 				} else {
 					console.error("Session expired");
 				}

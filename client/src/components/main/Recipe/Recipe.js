@@ -42,26 +42,6 @@ const Recipe = ({
 		setIsMoreInfoVisible(!isMoreInfoVisible);
 	};
 
-	const handleFavourite = value => {
-		fetch("http://localhost:3001/api/favourite", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
-
-			body: JSON.stringify({
-				token: token,
-				id: id,
-				favourite: value,
-			}),
-		})
-			.then(res => {
-				res.ok && setFavouritedByUser(value);
-			})
-			.catch(err => console.error(err));
-	};
-
 	return (
 		<div className="recipe">
 			<div className="background">
@@ -71,7 +51,9 @@ const Recipe = ({
 				<Favourite
 					favourite={favourite}
 					favouritedByUser={favouritedByUser}
-					handleFavourite={handleFavourite}
+					token={token}
+					id={id}
+					setFavouritedByUser={setFavouritedByUser}
 				/>
 				<div className="content-container">
 					<div className="title">{name}</div>
