@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Main.scss";
 import uuid from "react-uuid";
+import PropTypes from "prop-types";
 
 import Recipe from "./Recipe/Recipe";
 
 import { RiLoader4Line } from "react-icons/ri";
 import { MdError } from "react-icons/md";
 
-const Main = () => {
+const Main = ({ userData, token }) => {
 	const [data, setData] = useState();
 	const [errorLoadingData, setErrorLoadingData] = useState(true);
 
@@ -40,6 +41,7 @@ const Main = () => {
 						data.map(recipe => (
 							<Recipe
 								key={uuid()}
+								id={recipe.id}
 								image={recipe.image}
 								name={recipe.name}
 								subtitle={recipe.headline}
@@ -52,6 +54,8 @@ const Main = () => {
 								fats={recipe.fats}
 								carbs={recipe.carbos}
 								proteins={recipe.proteins}
+								userData={userData}
+								token={token}
 							/>
 						))
 					) : errorLoadingData ? (
@@ -87,6 +91,16 @@ const Main = () => {
 			</section>
 		</div>
 	);
+};
+
+Main.propTypes = {
+	userData: PropTypes.array,
+	token: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+};
+
+Main.defaultProps = {
+	userData: [],
+	token: null,
 };
 
 export default Main;

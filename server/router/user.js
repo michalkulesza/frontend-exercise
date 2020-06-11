@@ -22,7 +22,8 @@ router.post("/api/login", async (req, res) => {
 		}
 		const token = await user.generateAuthToken();
 		const userId = user._id;
-		res.send({ token, userId });
+		const recipes = user.recipes;
+		res.send({ token, userId, recipes });
 	} catch (error) {
 		console.log(error);
 		res.status(400).send(error);
@@ -32,6 +33,30 @@ router.post("/api/login", async (req, res) => {
 router.post("/api/logout", auth, async (req, res) => {
 	try {
 		req.user.tokens.splice(0, req.user.tokens.length);
+		await req.user.save();
+		res.send();
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
+
+router.post("/api/rate", auth, async (req, res) => {
+	try {
+		const { id, rating } = req.body;
+		const userRecipes = req.user.recipes;
+		const recipe = userRecipes.find(recipe => recipe._id === id);
+
+		if (recipe) {
+			recipe.rating = rating;
+		} else {
+			const newRecipe = {
+				_id: id,
+				favourited: false,
+				rating: rating,
+			};
+			userRecipes.push(newRecipe);
+		}
+
 		await req.user.save();
 		res.send();
 	} catch (error) {

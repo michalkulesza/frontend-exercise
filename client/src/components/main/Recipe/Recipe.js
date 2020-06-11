@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Recipe.scss";
 import PropTypes from "prop-types";
 
@@ -7,6 +7,7 @@ import Info from "./Info/Info";
 import MoreInfo from "./MoreInfo/MoreInfo";
 
 const Recipe = ({
+	id,
 	image,
 	rating,
 	name,
@@ -19,12 +20,26 @@ const Recipe = ({
 	fats,
 	carbs,
 	proteins,
+	userData,
+	token,
 }) => {
 	const [isMoreInfoVisible, setIsMoreInfoVisible] = useState(false);
+	const [ratedByUser, setRatedByUser] = useState(null);
+	const [favouritedByUser, setFavouritedByUser] = useState(false);
 
 	const handleShowMore = () => {
 		setIsMoreInfoVisible(!isMoreInfoVisible);
 	};
+
+	useEffect(() => {
+		userData &&
+			userData.forEach(item => {
+				if (item._id === id) {
+					setFavouritedByUser(item.favourited);
+					setRatedByUser(item.rating);
+				}
+			});
+	}, [id, userData]);
 
 	return (
 		<div className="recipe">
@@ -57,7 +72,12 @@ const Recipe = ({
 						</div>
 					</div>
 					<Info difficulty={difficulty} time={time} />
-					<Rating rating={rating} />
+					<Rating
+						rating={rating}
+						ratedByUser={ratedByUser}
+						token={token}
+						id={id}
+					/>
 				</div>
 				<MoreInfo
 					isMoreInfoVisible={isMoreInfoVisible}
@@ -82,6 +102,10 @@ Recipe.defaultProps = {
 	fats: "-",
 	carbs: "-",
 	proteins: "-",
+	id: "",
+	userData: [],
+
+	token: null,
 };
 
 Recipe.propTypes = {
@@ -97,6 +121,9 @@ Recipe.propTypes = {
 	fats: PropTypes.string,
 	carbs: PropTypes.string,
 	proteins: PropTypes.string,
+	userData: PropTypes.array,
+	id: PropTypes.string,
+	token: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 export default Recipe;

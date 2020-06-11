@@ -7,9 +7,9 @@ import { MdStar } from "react-icons/md";
 import { MdStarHalf } from "react-icons/md";
 import { MdStarBorder } from "react-icons/md";
 
-const Rating = ({ rating, ratedByUser }) => {
+const Rating = ({ rating, ratedByUser, token, id }) => {
 	const [stars, setStars] = useState([]);
-	const [userRating, setUserRating] = useState(ratedByUser);
+	const [userRating, setUserRating] = useState(null);
 	const [tempUserRating, setTempUserRating] = useState(null);
 
 	const handleHoverOnStar = e => {
@@ -25,7 +25,23 @@ const Rating = ({ rating, ratedByUser }) => {
 	};
 
 	const handleStarClick = e => {
-		setUserRating(tempUserRating);
+		fetch("http://localhost:3001/api/rate", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+
+			body: JSON.stringify({
+				token: token,
+				id: id,
+				rating: tempUserRating,
+			}),
+		})
+			.then(res => {
+				res.ok && setUserRating(tempUserRating);
+			})
+			.catch(err => console.error(err));
 	};
 
 	const generateStars = ratingValue => {
@@ -55,6 +71,10 @@ const Rating = ({ rating, ratedByUser }) => {
 
 		return displayArray;
 	};
+
+	useEffect(() => {
+		ratedByUser && setUserRating(ratedByUser);
+	}, [ratedByUser]);
 
 	useEffect(() => {
 		userRating
@@ -123,11 +143,15 @@ const Rating = ({ rating, ratedByUser }) => {
 Rating.propTypes = {
 	rating: PropTypes.number,
 	ratedByuser: PropTypes.number,
+	token: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+	id: PropTypes.string,
 };
 
 Rating.defaultProps = {
 	rating: null,
 	ratedByuser: null,
+	token: null,
+	id: "",
 };
 
 export default Rating;

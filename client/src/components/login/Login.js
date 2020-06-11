@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import "./Login.scss";
 
 import displayError from "../../functions";
 
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const Login = ({ history, setToken }) => {
+const Login = ({ history, setToken, setUserData }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
@@ -40,6 +39,8 @@ const Login = ({ history, setToken }) => {
 			})
 			.then(res => {
 				setToken(res.token);
+				setUserData(res.recipes);
+
 				history.push("/");
 			})
 			.catch(err => {

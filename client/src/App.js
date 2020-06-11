@@ -8,17 +8,26 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 
 const App = () => {
-	const [token, setToken] = useState("");
+	const [token, setToken] = useState(null);
+	const [userData, setUserData] = useState([]);
 	return (
 		<Router>
 			<div className="App">
 				<Navbar token={token} setToken={setToken} />
 				<Switch>
-					<Route path="/" exact component={Main} />
+					<Route
+						path="/"
+						exact
+						render={props => (
+							<Main {...props} userData={userData} token={token} />
+						)}
+					/>
 					<Route
 						path="/login"
 						exact
-						render={props => <Login {...props} setToken={setToken} />}
+						render={props => (
+							<Login {...props} setToken={setToken} setUserData={setUserData} />
+						)}
 					/>
 					<Route path="/register" exact component={Register} />
 				</Switch>
