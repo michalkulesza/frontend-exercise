@@ -27,6 +27,7 @@ const Recipe = ({
 	const [isMoreInfoVisible, setIsMoreInfoVisible] = useState(false);
 	const [ratedByUser, setRatedByUser] = useState(null);
 	const [favouritedByUser, setFavouritedByUser] = useState(false);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		userData &&
@@ -42,18 +43,29 @@ const Recipe = ({
 		setIsMoreInfoVisible(!isMoreInfoVisible);
 	};
 
+	const handleShowError = () => {
+		setError(true);
+		setTimeout(() => {
+			setError(false);
+		}, 2000);
+	};
+
 	return (
 		<div className="recipe">
 			<div className="background">
 				{image ? <img src={image} alt="Dish" /> : null}
 			</div>
 			<div className="overlay">
+				<div className={error ? "error-container" : "error-container hidden"}>
+					<span>Please log in first</span>
+				</div>
 				<Favourite
 					favourite={favourite}
 					favouritedByUser={favouritedByUser}
 					token={token}
 					id={id}
 					setFavouritedByUser={setFavouritedByUser}
+					handleShowError={handleShowError}
 				/>
 				<div className="content-container">
 					<div className="title">{name}</div>
@@ -82,6 +94,7 @@ const Recipe = ({
 						ratedByUser={ratedByUser}
 						token={token}
 						id={id}
+						handleShowError={handleShowError}
 					/>
 				</div>
 				<MoreInfo

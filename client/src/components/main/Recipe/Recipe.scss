@@ -33,6 +33,25 @@
 		color: $white;
 		padding: 1em;
 
+		.error-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: rgba($color: #000000, $alpha: 0.6);
+			z-index: 3;
+			@extend %transition;
+			opacity: 1;
+
+			&.hidden {
+				opacity: 0;
+				pointer-events: none;
+			}
+
+			span {
+				font-size: 0.6em;
+			}
+		}
+
 		.content-container {
 			margin-bottom: 3em;
 

@@ -1,25 +1,35 @@
 import React from "react";
 import "./Favourite.scss";
 
-const Favourite = ({ favouritedByUser, token, id, setFavouritedByUser }) => {
+const Favourite = ({
+	favouritedByUser,
+	token,
+	id,
+	setFavouritedByUser,
+	handleShowError,
+}) => {
 	const handleFavourite = value => {
-		fetch("http://localhost:3001/api/favourite", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
+		if (token) {
+			fetch("http://localhost:3001/api/favourite", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
 
-			body: JSON.stringify({
-				token: token,
-				id: id,
-				favourite: value,
-			}),
-		})
-			.then(res => {
-				res.ok && setFavouritedByUser(value);
+				body: JSON.stringify({
+					token: token,
+					id: id,
+					favourite: value,
+				}),
 			})
-			.catch(err => console.error(err));
+				.then(res => {
+					res.ok && setFavouritedByUser(value);
+				})
+				.catch(err => console.error(err));
+		} else {
+			handleShowError();
+		}
 	};
 
 	return (

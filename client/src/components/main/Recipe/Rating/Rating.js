@@ -7,7 +7,7 @@ import { MdStar } from "react-icons/md";
 import { MdStarHalf } from "react-icons/md";
 import { MdStarBorder } from "react-icons/md";
 
-const Rating = ({ rating, ratedByUser, token, id }) => {
+const Rating = ({ rating, ratedByUser, token, id, handleShowError }) => {
 	const [stars, setStars] = useState([]);
 	const [userRating, setUserRating] = useState(null);
 	const [tempUserRating, setTempUserRating] = useState(null);
@@ -25,23 +25,27 @@ const Rating = ({ rating, ratedByUser, token, id }) => {
 	};
 
 	const handleStarClick = e => {
-		fetch("http://localhost:3001/api/rate", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
+		if (token) {
+			fetch("http://localhost:3001/api/rate", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
 
-			body: JSON.stringify({
-				token: token,
-				id: id,
-				rating: tempUserRating,
-			}),
-		})
-			.then(res => {
-				res.ok && setUserRating(tempUserRating);
+				body: JSON.stringify({
+					token: token,
+					id: id,
+					rating: tempUserRating,
+				}),
 			})
-			.catch(err => console.error(err));
+				.then(res => {
+					res.ok && setUserRating(tempUserRating);
+				})
+				.catch(err => console.error(err));
+		} else {
+			handleShowError();
+		}
 	};
 
 	const generateStars = ratingValue => {
