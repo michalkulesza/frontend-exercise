@@ -5,9 +5,27 @@ import PropTypes from "prop-types";
 
 import { ReactComponent as Reactlogo } from "../../assets/HelloFresh_Logo_Horizontal_V2.svg";
 
-const Navbar = ({ token }) => {
+const Navbar = ({ token, setToken }) => {
 	const location = useLocation();
 	let currentLocation = location.pathname;
+
+	const handleLogout = () => {
+		fetch("http://localhost:3001/api/logout", {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+		})
+			.then(res => {
+				if (res.ok) {
+					setToken(null);
+				} else {
+					console.error("Session expired");
+				}
+			})
+			.catch(err => console.error(err));
+	};
 
 	return (
 		<div className="navbar">
@@ -32,9 +50,9 @@ const Navbar = ({ token }) => {
 						<button className="navbar__right-button">Register</button>
 					</Link>
 				) : token ? (
-					<Link to="/logout">
-						<button className="navbar__right-button">Log out</button>
-					</Link>
+					<button className="navbar__right-button" onMouseDown={handleLogout}>
+						Log out
+					</button>
 				) : (
 					<Link to="/login">
 						<button className="navbar__right-button">Log in</button>

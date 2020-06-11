@@ -5,7 +5,6 @@ const auth = require("../middleware/auth");
 
 router.post("/api/register", async (req, res) => {
 	try {
-		console.log(req.body);
 		const user = new User(req.body);
 		await user.save();
 		res.status(200).send("User created");

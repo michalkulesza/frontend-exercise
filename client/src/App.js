@@ -12,7 +12,7 @@ const App = () => {
 	return (
 		<Router>
 			<div className="App">
-				<Navbar token={token} />
+				<Navbar token={token} setToken={setToken} />
 				<Switch>
 					<Route path="/" exact component={Main} />
 					<Route
