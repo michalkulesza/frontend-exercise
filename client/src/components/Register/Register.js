@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Register.scss";
 
 import displayError from "../../functions";
+import { RiLoader4Line } from "react-icons/ri";
 
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -11,9 +12,15 @@ const Register = ({ history }) => {
 	const [password, setPassword] = useState("");
 	const [password2, setPassword2] = useState("");
 	const [error, setError] = useState(null);
+	const [registering, setRegistering] = useState(false);
 
 	const handleSubmit = e => {
 		e.preventDefault();
+
+		if (registering) {
+			return;
+		}
+
 		if (!RegEx.test(email)) {
 			displayError("Incorrect e-mail", setError);
 			return;
@@ -27,6 +34,8 @@ const Register = ({ history }) => {
 			return;
 		}
 
+		setRegistering(true);
+
 		fetch("http://localhost:3001/api/register", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -38,12 +47,14 @@ const Register = ({ history }) => {
 			.then(res => {
 				if (res.ok) {
 					history.push("/login");
+					setRegistering(false);
 				} else {
 					displayError("User already exists", setError);
 				}
 			})
 			.catch(err => {
 				console.error(err);
+				setRegistering(false);
 				displayError("There has been a problem", setError);
 			});
 	};
@@ -77,7 +88,13 @@ const Register = ({ history }) => {
 						onChange={e => setPassword2(e.target.value)}
 					/>
 					<div className="form-error">{error}</div>
-					<button>REGISTER</button>
+					{registering ? (
+						<button className="loading">
+							<RiLoader4Line />
+						</button>
+					) : (
+						<button>REGISTER</button>
+					)}
 				</form>
 				<div className="shortcut">
 					Already have an account?

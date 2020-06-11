@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Login.scss";
 
 import displayError from "../../functions";
+import { RiLoader4Line } from "react-icons/ri";
 
 const RegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -10,9 +11,15 @@ const Login = ({ history, setToken, setUserData }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
+	const [logginIn, setLogginIn] = useState(false);
 
 	const handleSubmit = e => {
 		e.preventDefault();
+
+		if (logginIn) {
+			return;
+		}
+
 		if (!RegEx.test(email)) {
 			displayError("Incorrect e-mail", setError);
 			return;
@@ -21,6 +28,8 @@ const Login = ({ history, setToken, setUserData }) => {
 			displayError("Password too short", setError);
 			return;
 		}
+
+		setLogginIn(true);
 
 		fetch("http://localhost:3001/api/login", {
 			method: "POST",
@@ -40,11 +49,13 @@ const Login = ({ history, setToken, setUserData }) => {
 			.then(res => {
 				setToken(res.token);
 				setUserData(res.recipes);
+				setLogginIn(false);
 
 				history.push("/");
 			})
 			.catch(err => {
 				console.error(err);
+				setLogginIn(false);
 				displayError("There has been a problem", setError);
 			});
 	};
@@ -69,7 +80,13 @@ const Login = ({ history, setToken, setUserData }) => {
 						onChange={e => setPassword(e.target.value)}
 					/>
 					<div className="form-error">{error}</div>
-					<button>LOG IN</button>
+					{logginIn ? (
+						<button className="loading">
+							<RiLoader4Line />
+						</button>
+					) : (
+						<button>LOG IN</button>
+					)}
 				</form>
 				<div className="shortcut">
 					Not a member yet?

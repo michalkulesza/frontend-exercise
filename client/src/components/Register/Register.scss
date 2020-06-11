@@ -56,6 +56,14 @@
 				box-shadow: none;
 				background-color: darken($color: $dark-green, $amount: 5);
 			}
+
+			&.loading {
+				padding: 0.65em 2em 0.4em 2em;
+				svg {
+					font-size: 2em;
+					animation: spin 1s linear infinite;
+				}
+			}
 		}
 
 		.shortcut {
@@ -63,5 +71,12 @@
 			margin-top: 1em;
 			font-size: 0.9em;
 		}
+	}
+}
+
+@keyframes spin {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
 	}
 }
