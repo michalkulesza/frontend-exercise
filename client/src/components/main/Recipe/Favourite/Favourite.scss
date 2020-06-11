@@ -1,0 +1,24 @@
+@import "../../../../utils.scss";
+
+.favourite {
+	width: 100%;
+	height: 2em;
+	cursor: pointer;
+	@extend %flexY;
+	justify-content: flex-end;
+
+	&-text {
+		@extend %flexY;
+		@extend %border-radius;
+		@extend %transition;
+		@extend %shadow;
+		font-size: 0.9em;
+		padding: 0.8em;
+		background-color: $black;
+		height: 100%;
+
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+}

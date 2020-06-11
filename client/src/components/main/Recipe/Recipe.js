@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Rating from "./Rating/Rating";
 import Info from "./Info/Info";
 import MoreInfo from "./MoreInfo/MoreInfo";
+import Favourite from "./Favourite/Favourite";
 
 const Recipe = ({
 	id,
@@ -27,10 +28,6 @@ const Recipe = ({
 	const [ratedByUser, setRatedByUser] = useState(null);
 	const [favouritedByUser, setFavouritedByUser] = useState(false);
 
-	const handleShowMore = () => {
-		setIsMoreInfoVisible(!isMoreInfoVisible);
-	};
-
 	useEffect(() => {
 		userData &&
 			userData.forEach(item => {
@@ -41,15 +38,41 @@ const Recipe = ({
 			});
 	}, [id, userData]);
 
+	const handleShowMore = () => {
+		setIsMoreInfoVisible(!isMoreInfoVisible);
+	};
+
+	const handleFavourite = value => {
+		fetch("http://localhost:3001/api/favourite", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+
+			body: JSON.stringify({
+				token: token,
+				id: id,
+				favourite: value,
+			}),
+		})
+			.then(res => {
+				res.ok && setFavouritedByUser(value);
+			})
+			.catch(err => console.error(err));
+	};
+
 	return (
 		<div className="recipe">
 			<div className="background">
 				{image ? <img src={image} alt="Dish" /> : null}
 			</div>
 			<div className="overlay">
-				<div className="favourite">
-					<div className="favourite-text">Add to favourites</div>
-				</div>
+				<Favourite
+					favourite={favourite}
+					favouritedByUser={favouritedByUser}
+					handleFavourite={handleFavourite}
+				/>
 				<div className="content-container">
 					<div className="title">{name}</div>
 					<div className="subtitle">{subtitle}</div>

@@ -64,4 +64,28 @@ router.post("/api/rate", auth, async (req, res) => {
 	}
 });
 
+router.post("/api/favourite", auth, async (req, res) => {
+	try {
+		const { id, favourite } = req.body;
+		const userRecipes = req.user.recipes;
+		const recipe = userRecipes.find(recipe => recipe._id === id);
+
+		if (recipe) {
+			recipe.favourited = favourite;
+		} else {
+			const newRecipe = {
+				_id: id,
+				favourited: true,
+				rating: null,
+			};
+			userRecipes.push(newRecipe);
+		}
+
+		await req.user.save();
+		res.send();
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
+
 module.exports = router;
