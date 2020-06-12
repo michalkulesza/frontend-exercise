@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, RouteProps } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./Login.scss";
 
 import displayError from "../../functions";
@@ -96,6 +97,18 @@ const Login = ({ history, setToken, setUserData }) => {
 			</div>
 		</section>
 	);
+};
+
+Login.propTypes = {
+	history: PropTypes.array,
+	setToken: PropTypes.func,
+	setUserData: PropTypes.func,
+};
+
+Login.defaultProps = {
+	history: [],
+	setToken: () => null,
+	setUserData: () => null,
 };
 
 export default Login;
