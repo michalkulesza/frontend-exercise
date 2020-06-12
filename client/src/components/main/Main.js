@@ -10,7 +10,7 @@ import { MdError } from "react-icons/md";
 
 const Main = ({ userData, token }) => {
 	const [data, setData] = useState();
-	const [errorLoadingData, setErrorLoadingData] = useState(true);
+	const [errorLoadingData, setErrorLoadingData] = useState(false);
 
 	useEffect(() => {
 		fetch("http://localhost:3001/api/getdata")

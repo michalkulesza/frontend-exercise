@@ -1,14 +1,5 @@
 import React from "react";
-import { rest } from "msw";
-import { setupServer } from "msw/node";
-import {
-	render,
-	fireEvent,
-	waitFor,
-	screen,
-	getNodeText,
-	cleanup,
-} from "@testing-library/react";
+import { render, getNodeText } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
@@ -29,6 +20,7 @@ test("Login - validates email and password correctly", async () => {
 	await userEvent.type(loginEmailInput, "test@test");
 	userEvent.click(loginButton);
 	expect(getNodeText(loginErrorContainer)).toBe("Incorrect e-mail");
+
 	await userEvent.clear(loginEmailInput);
 	await userEvent.type(loginEmailInput, "test@test.com");
 	await userEvent.type(loginPasswordInput, "");
