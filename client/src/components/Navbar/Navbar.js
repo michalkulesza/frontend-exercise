@@ -121,10 +121,14 @@ const Navbar = ({ token, setToken, setUserData }) => {
 
 Navbar.propTypes = {
 	token: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+	setToken: PropTypes.func,
+	setUserData: PropTypes.func,
 };
 
 Navbar.defaultProps = {
 	token: null,
+	setToken: () => null,
+	setUserData: () => null,
 };
 
 export default Navbar;

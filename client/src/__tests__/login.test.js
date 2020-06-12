@@ -15,28 +15,6 @@ import "@testing-library/jest-dom/extend-expect";
 import Login from "../components/Login/Login";
 import { BrowserRouter } from "react-router-dom";
 
-// const server = setupServer(
-// 	res.post("/api/login", (req, res, ctx) => {
-// 		return res(ctx.json({
-//          token: 'abc123abc123abc123',
-//          userId: 'abc123abc123abc123',
-//          recipes: []
-//       }));
-// 	})
-// );
-
-// beforeAll(() => server.listen())
-// afterEach(() => server.resetHandlers())
-// afterAll(() => server.close())
-
-// test('login displays server error', async () => {
-//    server.use(
-//       rest.post('/api/login', (req,res,ctx)=>{
-//          return res(ctx.status(500))
-//       })
-//    )
-// })
-
 const utils = render(
 	<BrowserRouter>
 		<Login />
