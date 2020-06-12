@@ -26,7 +26,7 @@ const Login = ({ history, setToken, setUserData }) => {
 			return;
 		}
 		if (password.length < 6) {
-			displayError("Password too short", setError);
+			displayError("Password need to be at least 6 characters long", setError);
 			return;
 		}
 
@@ -72,6 +72,7 @@ const Login = ({ history, setToken, setUserData }) => {
 						placeholder="E-mail"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
+						data-testid="login-email-input"
 					/>
 					<input
 						className="input-password"
@@ -79,14 +80,17 @@ const Login = ({ history, setToken, setUserData }) => {
 						placeholder="Password"
 						value={password}
 						onChange={e => setPassword(e.target.value)}
+						data-testid="login-password-input"
 					/>
-					<div className="form-error">{error}</div>
+					<div className="form-error" data-testid="login-error">
+						{error}
+					</div>
 					{logginIn ? (
 						<button className="loading">
 							<RiLoader4Line />
 						</button>
 					) : (
-						<button>LOG IN</button>
+						<button data-testid="login-button">LOG IN</button>
 					)}
 				</form>
 				<div className="shortcut">
